@@ -1,0 +1,18 @@
+version: 0.0
+os: linux 
+files:
+  - source: /
+    destination: /var/www/html/
+hooks:
+  ApplicationStop:
+    # During the ApplicationInstall deployment lifecycle event, run the commands 
+  BeforeInstall:
+    - location: scripts/before_install.sh
+      timeout: 300
+      runas: ubuntu
+# During the ApplicationInstall deployment lifecycle event, run the commands 
+#   in the script specified in "location".
+  ApplicationStart:
+    - location: scripts/app_start.sh
+      timeout: 300
+      runas: ubuntu
